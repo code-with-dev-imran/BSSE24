@@ -1,0 +1,10 @@
+[
+  { "id": "1", "code": "CS-201", "title": "Data Structures", "credits": 3, "semester": 3, "instructor": "Dr. Ahmed", "description": "Arrays, linked lists, stacks, queues, trees, graphs and sorting algorithms." },
+  { "id": "2", "code": "CS-210", "title": "Database Systems", "credits": 3, "semester": 4, "instructor": "Dr. Fatima", "description": "ER models, relational algebra, SQL, normalization and transaction management." },
+  { "id": "3", "code": "SE-301", "title": "Software Design", "credits": 3, "semester": 5, "instructor": "Dr. Hassan", "description": "Design patterns, SOLID principles, UML diagrams and architecture styles." },
+  { "id": "4", "code": "CS-301", "title": "Operating Systems", "credits": 3, "semester": 5, "instructor": "Dr. Ali", "description": "Process management, memory management, file systems and concurrency." },
+  { "id": "5", "code": "CS-310", "title": "Computer Networks", "credits": 3, "semester": 5, "instructor": "Dr. Sara", "description": "OSI model, TCP/IP, routing, switching and network security fundamentals." },
+  { "id": "6", "code": "SE-401", "title": "Mobile App Development", "credits": 3, "semester": 7, "instructor": "Sir Imran", "description": "React Native, Expo, navigation, state management and API integration." },
+  { "id": "7", "code": "CS-401", "title": "Artificial Intelligence", "credits": 3, "semester": 7, "instructor": "Dr. Usman", "description": "Search algorithms, knowledge representation, machine learning basics and neural networks." },
+  { "id": "8", "code": "CS-410", "title": "Information Security", "credits": 3, "semester": 7, "instructor": "Dr. Bilal", "description": "Cryptography, authentication, access control, network security and ethical hacking." }
+]
