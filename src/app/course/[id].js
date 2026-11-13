@@ -1,23 +1,45 @@
-import { StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import { Stack, useLocalSearchParams } from "expo-router";
+import { useState, useEffect } from "react";
 
-const courses = {
-  c1: { code: "CS-201", title: "Data Structures", credits: 3, semester: 3, instructor: "Dr. Ahmed", description: "Arrays, linked lists, stacks, queues, trees, graphs and sorting algorithms." },
-  c2: { code: "CS-210", title: "Databases", credits: 3, semester: 4, instructor: "Dr. Fatima", description: "ER models, relational algebra, SQL, normalization and transaction management." },
-  c3: { code: "SE-301", title: "Software Design", credits: 3, semester: 5, instructor: "Dr. Hassan", description: "Design patterns, SOLID principles, UML diagrams and architecture styles." },
-};
+const API_URL = "https://raw.githubusercontent.com/code-with-dev-imran/BSSE24/main/api/courses.json";
 
 export default function CourseDetail() {
   const { id } = useLocalSearchParams();
-  const course = courses[id];
+  const [course, setCourse] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  if (!course) {
+  useEffect(() => {
+    async function load() {
+      try {
+        const res = await fetch(API_URL);
+        if (!res.ok) throw new Error("Request failed: " + res.status);
+        const courses = await res.json();
+        const found = courses.find((c) => c.id === id);
+        setCourse(found || null);
+      } catch (e) {
+        setError(e.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+    load();
+  }, [id]);
+
+  if (loading) return <ActivityIndicator style={styles.center} size="large" />;
+  if (error)
     return (
       <View style={styles.screen}>
-        <Text style={styles.body}>No course with the id {id}.</Text>
+        <Text style={styles.body}>{error}</Text>
       </View>
     );
-  }
+  if (!course)
+    return (
+      <View style={styles.screen}>
+        <Text style={styles.body}>No course found with id {id}.</Text>
+      </View>
+    );
 
   return (
     <View style={styles.screen}>
@@ -49,6 +71,7 @@ export default function CourseDetail() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: "#EEF1F4", padding: 16 },
+  center: { flex: 1, justifyContent: "center", alignItems: "center" },
   title: { fontSize: 24, fontWeight: "700", color: "#1B2027", marginBottom: 4 },
   code: { fontSize: 14, color: "#6B7684", marginBottom: 16 },
   card: { backgroundColor: "#FFFFFF", borderRadius: 10, padding: 16, marginBottom: 16 },
