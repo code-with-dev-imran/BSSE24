@@ -1,15 +1,18 @@
 import { Stack } from "expo-router";
+import { SavedProvider } from "../context/SavedContext";
 
 export default function RootLayout() {
   return (
-    <Stack screenOptions={{headerStyle: {backgroundColor: "#000"},
-    headerTintColor: "#fff",
-    headerShown: false
-    }} >
-      <Stack.Screen name="(tabs)"  />
-      {/* <Stack.Screen name="about" options={{title: "About"}} /> */}
-      {/* <Stack.Screen name="course/[id]" options={{title: "Course Details"}} /> */}
+    <SavedProvider>
+      <Stack screenOptions={{headerStyle: {backgroundColor: "#000"},
+      headerTintColor: "#fff",
+      headerShown: false
+      }} >
+        <Stack.Screen name="(tabs)"  />
+        {/* <Stack.Screen name="about" options={{title: "About"}} /> */}
+        {/* <Stack.Screen name="course/[id]" options={{title: "Course Details"}} /> */}
 
-    </Stack>
+      </Stack>
+    </SavedProvider>
   );
 }
