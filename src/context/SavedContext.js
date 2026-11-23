@@ -13,8 +13,12 @@ export function SavedProvider({ children }) {
     );
   }
 
+  function clear() {
+    setSaved([]);
+  }
+
   return (
-    <SavedContext.Provider value={{ saved, toggle }}>
+    <SavedContext.Provider value={{ saved, toggle, clear }}>
       {children}
     </SavedContext.Provider>
   );
