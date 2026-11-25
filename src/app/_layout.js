@@ -19,7 +19,7 @@ function RootStack() {
 
   return (
     <Stack screenOptions={{headerStyle: {backgroundColor: "#000"},
-    headerTintColor: "#fff",
+        headerTintColor: "#fff",
     headerShown: false
     }} >
       <Stack.Protected guard={!!user}>
@@ -29,6 +29,7 @@ function RootStack() {
       </Stack.Protected>
       <Stack.Protected guard={!user}>
         <Stack.Screen name="(auth)/sign-in" />
+        <Stack.Screen name="(auth)/sign-up" />
       </Stack.Protected>
     </Stack>
   );

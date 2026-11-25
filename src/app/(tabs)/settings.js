@@ -3,8 +3,6 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { AuthContext } from "../../context/AuthContext";
-import { SavedContext } from "../../context/SavedContext";
-
 const ITEMS = [
   { title: "Profile", icon: "user", path: "/profile" },
   { title: "Notifications", icon: "bell" },
@@ -15,12 +13,7 @@ const ITEMS = [
 export default function Settings() {
   const router = useRouter();
   const { user, signOut } = useContext(AuthContext);
-  const { clear } = useContext(SavedContext);
-
-  async function onSignOut() {
-    clear();
-    await signOut();
-  }
+  console.log("======>",user)
 
   return (
     <View style={styles.screen}>
@@ -28,8 +21,7 @@ export default function Settings() {
 
       <View style={styles.card}>
         <Text style={styles.label}>Signed in as</Text>
-        <Text style={styles.name}>{user?.name}</Text>
-        <Text style={styles.body}>{user?.email}</Text>
+        <Text style={styles.name}>{user?.email}</Text>
       </View>
 
       {ITEMS.map((item) => (
@@ -44,7 +36,7 @@ export default function Settings() {
         </Pressable>
       ))}
 
-      <Pressable style={styles.button} onPress={onSignOut}>
+      <Pressable style={styles.button} onPress={signOut}>
         <Text style={styles.buttonText}>Sign out</Text>
       </Pressable>
     </View>
