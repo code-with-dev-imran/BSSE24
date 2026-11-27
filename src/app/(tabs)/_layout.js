@@ -1,13 +1,20 @@
+import { Pressable } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-import { Tabs } from "expo-router";
+import { Tabs, useRouter } from "expo-router";
 
 export default function TabLayout() {
+    const router = useRouter();
     return (
-        <Tabs screenOptions={{ tabBarActiveTintColor: "#18A999" }}>
+        <Tabs screenOptions={{ tabBarActiveTintColor: "#7C3AED" }}>
             <Tabs.Screen name="index" options={{
                 title: "Courses",
                 tabBarIcon: ({ color }) => (
                     <FontAwesome name="book" size={22} color={color} />
+                ),
+                headerRight: () => (
+                    <Pressable onPress={() => router.push("/add-course")} style={{ marginRight: 16 }}>
+                        <FontAwesome name="plus" size={22} color="#7C3AED" />
+                    </Pressable>
                 ),
             }} />
             <Tabs.Screen name="saved" options={{
